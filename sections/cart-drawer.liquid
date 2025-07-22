@@ -1,0 +1,99 @@
+<div class="drawer">
+    <div class="drawer-header">
+    <h2 class="title-cart">Cart</h2>
+    <button id="close-drawer" class="close-drawer">
+        <svg xmlns="http://www.w3.org/2000/svg" width="24" height="24" viewBox="0 0 24 24" fill="none">
+            <path d="M19.281 18.2194C19.3507 18.2891 19.406 18.3718 19.4437 18.4628C19.4814 18.5539 19.5008 18.6515 19.5008 18.75C19.5008 18.8486 19.4814 18.9461 19.4437 19.0372C19.406 19.1282 19.3507 19.2109 19.281 19.2806C19.2114 19.3503 19.1286 19.4056 19.0376 19.4433C18.9465 19.481 18.849 19.5004 18.7504 19.5004C18.6519 19.5004 18.5543 19.481 18.4632 19.4433C18.3722 19.4056 18.2895 19.3503 18.2198 19.2806L12.0004 13.0603L5.78104 19.2806C5.64031 19.4214 5.44944 19.5004 5.25042 19.5004C5.05139 19.5004 4.86052 19.4214 4.71979 19.2806C4.57906 19.1399 4.5 18.949 4.5 18.75C4.5 18.551 4.57906 18.3601 4.71979 18.2194L10.9401 12L4.71979 5.78063C4.57906 5.6399 4.5 5.44903 4.5 5.25001C4.5 5.05098 4.57906 4.86011 4.71979 4.71938C4.86052 4.57865 5.05139 4.49959 5.25042 4.49959C5.44944 4.49959 5.64031 4.57865 5.78104 4.71938L12.0004 10.9397L18.2198 4.71938C18.3605 4.57865 18.5514 4.49959 18.7504 4.49959C18.9494 4.49959 19.1403 4.57865 19.281 4.71938C19.4218 4.86011 19.5008 5.05098 19.5008 5.25001C19.5008 5.44903 19.4218 5.6399 19.281 5.78063L13.0607 12L19.281 18.2194Z" fill="#274250"/>
+        </svg>
+    </button>
+    </div>
+    {% if cart.item_count == 0 %}
+        <div class="drawer-empty">
+            <span class="text-empty">Your cart’s feeling a little lonely.</span>
+            <h2 class="title-empty">Let’s fix that with our most-loved sets picked</h2>
+        </div>
+    {% else %}
+
+    {% form 'cart', cart %}
+        <div class="drawer-main">
+        {% for item in cart.items %}
+            <div data-line-item-key="{{ item.key }}" id="drawer-cart-items" class="drawer-cart-items">
+                <div class="box-img">
+                    <img src="{{ item.image |  image_url: width: 80  }}" alt="">
+                </div>
+            <div class="drawer-cart-action">
+                <h3 class="fs-18 txt-500">{{ item.product.title }}</h3>
+                {% comment %} <p class="fs-14 cl-black-60">{{ item.variant.title }}</p> {% endcomment %}
+                <p class="fs-14 cl-black-60">{{ item.final_line_price | money }}/month</p>
+                <div class="product-quantity drawer-cart-product-quantity">
+                    <div class="cart-block-quantity">
+                        <div class="product-quantity">
+                        <button type="button" class="decrement" data-key="{{ item.key }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                                <path d="M14.332 8C14.332 8.13261 14.2794 8.25979 14.1856 8.35355C14.0918 8.44732 13.9646 8.5 13.832 8.5H2.83203C2.69942 8.5 2.57225 8.44732 2.47848 8.35355C2.38471 8.25979 2.33203 8.13261 2.33203 8C2.33203 7.86739 2.38471 7.74021 2.47848 7.64645C2.57225 7.55268 2.69942 7.5 2.83203 7.5H13.832C13.9646 7.5 14.0918 7.55268 14.1856 7.64645C14.2794 7.74021 14.332 7.86739 14.332 8Z" fill="#7D8B94"/>
+                            </svg>
+                        </button>
+                        <input class="quantity-input" name="updates[{{ item.key }}]" value="{{ item.quantity }}" min="0">
+                        <button type="button" class="increment" data-key="{{ item.key }}">
+                            <svg xmlns="http://www.w3.org/2000/svg" width="17" height="16" viewBox="0 0 17 16" fill="none">
+                                <path d="M14.332 8C14.332 8.13261 14.2794 8.25979 14.1856 8.35355C14.0918 8.44732 13.9646 8.5 13.832 8.5H8.83203V13.5C8.83203 13.6326 8.77935 13.7598 8.68559 13.8536C8.59182 13.9473 8.46464 14 8.33203 14C8.19942 14 8.07225 13.9473 7.97848 13.8536C7.88471 13.7598 7.83203 13.6326 7.83203 13.5V8.5H2.83203C2.69942 8.5 2.57225 8.44732 2.47848 8.35355C2.38471 8.25979 2.33203 8.13261 2.33203 8C2.33203 7.86739 2.38471 7.74021 2.47848 7.64645C2.57225 7.55268 2.69942 7.5 2.83203 7.5H7.83203V2.5C7.83203 2.36739 7.88471 2.24021 7.97848 2.14645C8.07225 2.05268 8.19942 2 8.33203 2C8.46464 2 8.59182 2.05268 8.68559 2.14645C8.77935 2.24021 8.83203 2.36739 8.83203 2.5V7.5H13.832C13.9646 7.5 14.0918 7.55268 14.1856 7.64645C14.2794 7.74021 14.332 7.86739 14.332 8Z" fill="#7D8B94"/>
+                            </svg>
+                        </button>
+                        </div>
+                    </div>
+                    <div class="cart-block-remove">
+                        <a href="{{ item.url_to_remove }}" value="0" class="cart-remove" >
+                            <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 16 16" fill="none">
+                            <path d="M13.5 3H11.25V2.25C11.25 1.78587 11.0656 1.34075 10.7374 1.01256C10.4092 0.684374 9.96413 0.5 9.5 0.5H6.5C6.03587 0.5 5.59075 0.684374 5.26256 1.01256C4.93437 1.34075 4.75 1.78587 4.75 2.25V3H2.5C2.30109 3 2.11032 3.07902 1.96967 3.21967C1.82902 3.36032 1.75 3.55109 1.75 3.75C1.75 3.94891 1.82902 4.13968 1.96967 4.28033C2.11032 4.42098 2.30109 4.5 2.5 4.5H2.75V13C2.75 13.3315 2.8817 13.6495 3.11612 13.8839C3.35054 14.1183 3.66848 14.25 4 14.25H12C12.3315 14.25 12.6495 14.1183 12.8839 13.8839C13.1183 13.6495 13.25 13.3315 13.25 13V4.5H13.5C13.6989 4.5 13.8897 4.42098 14.0303 4.28033C14.171 4.13968 14.25 3.94891 14.25 3.75C14.25 3.55109 14.171 3.36032 14.0303 3.21967C13.8897 3.07902 13.6989 3 13.5 3ZM6.25 2.25C6.25 2.1837 6.27634 2.12011 6.32322 2.07322C6.37011 2.02634 6.4337 2 6.5 2H9.5C9.5663 2 9.62989 2.02634 9.67678 2.07322C9.72366 2.12011 9.75 2.1837 9.75 2.25V3H6.25V2.25ZM11.75 12.75H4.25V4.5H11.75V12.75ZM7.25 6.5V10.5C7.25 10.6989 7.17098 10.8897 7.03033 11.0303C6.88968 11.171 6.69891 11.25 6.5 11.25C6.30109 11.25 6.11032 11.171 5.96967 11.0303C5.82902 10.8897 5.75 10.6989 5.75 10.5V6.5C5.75 6.30109 5.82902 6.11032 5.96967 5.96967C6.11032 5.82902 6.30109 5.75 6.5 5.75C6.69891 5.75 6.88968 5.82902 7.03033 5.96967C7.17098 6.11032 7.25 6.30109 7.25 6.5ZM10.25 6.5V10.5C10.25 10.6989 10.171 10.8897 10.0303 11.0303C9.88968 11.171 9.69891 11.25 9.5 11.25C9.30109 11.25 9.11032 11.171 8.96967 11.0303C8.82902 10.8897 8.75 10.6989 8.75 10.5V6.5C8.75 6.30109 8.82902 6.11032 8.96967 5.96967C9.11032 5.82902 9.30109 5.75 9.5 5.75C9.69891 5.75 9.88968 5.82902 10.0303 5.96967C10.171 6.11032 10.25 6.30109 10.25 6.5Z" fill="#7D8B94"/>
+                        </svg>
+                        </a>
+                    </div>
+                </div>
+
+            </div>
+            </div>
+        {% endfor %}
+        </div>
+        <div class="drawer-footer">
+            <div class="drawer-footer-details">
+                {% comment %} <p class="txt-400 fs-16">Total: <span id="cart-total">{{ cart.total_price | money }}</span></p> {% endcomment %}
+                {% comment %} <a href="{{ routes.cart_url }}" class="button fs-12 cl-black-60 underline go-to-cart">Go to cart</a> {% endcomment %}
+                <div class="cart-summary-main">
+                    {% comment %} <div class="cart-summary-item">
+                        <div class="drawer_total">
+                            <div class="drawer_total-item">
+                                <span>Discount</span>
+                                <span>{{ cart.total_discount | money }}</span>
+                            </div>
+                            <div class="drawer_total-item">
+                                <span>Subtotal</span>
+                                <span>{{ cart.original_total_price | money }}</span>
+                            </div>
+                        </div>
+                    </div> {% endcomment %}
+                    <div class="cart-summary-item">
+                    <span>Total</span>
+                    <span>{{ cart.items_subtotal_price | money }}</span>
+                    </div>
+                </div>
+            </div>
+            <div class="cart-button">
+                <button type="submit" name="checkout" class="button is-small btn-primary">Proceed to checkout</button>
+                {% comment %} <a href="{{ routes.cart_url }}" class="button is-small btn-outline go-to-cart">View Cart</a> {% endcomment %}
+                <a href="/cart" class="go-to-cart button is-small btn-outline">View Cart</a>
+            </div>
+        </div>
+    {% endform %}
+
+    {% endif %}
+</div>
+
+{% schema %}
+{
+    "name": "Cart Drawer",
+    "tag": "section",
+    "class": "section cart-drawer",
+    "settings": [
+]
+}
+{% endschema %}
