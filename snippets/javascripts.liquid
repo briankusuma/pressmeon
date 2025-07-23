@@ -1,7 +1,39 @@
-
-
 <script>
     console.log('JavaScript snippet loaded successfully!');
+
+    var prevScrollpos = window.pageYOffset;
+
+window.addEventListener('scroll', function() {
+    var currentScrollPos = window.pageYOffset;
+    var header = document.querySelector(".section-header");
+    if (!header) return;
+
+    // 🔹 Logika sembunyi/muncul saat scroll
+    if (prevScrollpos > currentScrollPos) {
+        header.style.top = "0";
+    } else {
+        header.style.top = "-80px"; // samakan dengan tinggi header
+    }
+    prevScrollpos = currentScrollPos;
+
+    // 🔹 Logika ganti background berdasarkan posisi scroll
+    const scrollTop = window.pageYOffset || document.documentElement.scrollTop;
+    const maxScroll = document.documentElement.scrollHeight - window.innerHeight;
+    const scrollPercent = (scrollTop / maxScroll) * 100;
+
+    if (scrollTop <= 0) {
+        // di paling atas
+        header.style.backgroundColor = 'transparent';
+    } else if (scrollPercent >= 20) {
+        // sudah lewat 20% halaman
+        header.style.backgroundColor = '#00000033';
+    } else {
+        // di antara 0% dan 20%
+        header.style.backgroundColor = 'transparent';
+    }
+});
+
+
 </script>
 <script>
     console.log('JavaScript snippet loaded successfully 2');

@@ -1,60 +1,45 @@
 <header>
-  <h2 class="header__title">
-    {{ shop.name | link_to: routes.root_url }}
-  </h2>
 
   <div class="header__menu">
-    {% for link in section.settings.menu.links %}
+    {% for link in linklists.main-menu.links %}
       {{ link.title | link_to: link.url }}
     {% endfor %}
   </div>
 
+  <a href="{{ routes.root_url }}" class="logo-link header__title">
+    <img class="logo-brand" src="{{ 'logo-pressmeon.svg' | asset_url }}" alt="{{ shop.name }}" width="124" height="24">
+  </a>
+
+
+
   <div class="header__icons">
     {% if shop.customer_accounts_enabled %}
-      {{ 'icon-account.svg' | inline_asset_content | link_to: routes.account_url }}
+      <a href="{{ routes.account_url }}" class="account-link" aria-label="Account">
+        {% comment %} {{ 'icon-account.svg' | inline_asset_content }} {% endcomment %}
+        Account
+      </a>
+      
     {% endif %}
 
-    <a href="{{ routes.cart_url }}" class="cart_menus" >
+    <a href="/cart" class="cart_menus cart-icon">
+      Cart (
       {% if cart.item_count > 0 %}
         <sup>{{ cart.item_count }}</sup>
-      {% endif %}
-
-      {{ 'icon-cart.svg' | inline_asset_content }}
+      {% endif %})
+          <svg xmlns="http://www.w3.org/2000/svg" width="25" height="24" viewBox="0 0 25 24" fill="none">
+          <path d="M21.6838 14.8499C21.3088 12.7124 20.9338 10.5374 20.5588 8.39994C20.4463 7.72494 20.3338 7.01244 20.1838 6.33745C19.9588 5.06245 18.9838 3.97495 17.6713 3.74995C17.0338 3.63745 16.3588 3.67495 15.7588 3.67495C14.6338 3.67495 13.5088 3.67495 12.3463 3.67495C11.3338 3.67495 10.3588 3.67495 9.3463 3.67495C8.4463 3.67495 7.6213 3.71245 6.8338 4.23745C6.1588 4.72495 5.7088 5.39995 5.5588 6.22495C4.9963 9.44994 4.3963 12.6749 3.8713 15.8624C3.6088 17.3999 4.2838 18.9749 5.6338 19.7624C6.3838 20.2124 7.2088 20.2874 8.0338 20.2874H14.1838H17.1838C17.8213 20.2874 18.4588 20.3249 19.0588 20.1749C20.6338 19.7999 21.7588 18.3749 21.8713 16.7624C21.9838 16.1624 21.7963 15.4874 21.6838 14.8499ZM19.8463 18.5999C19.2463 19.1249 18.4963 19.1624 17.7463 19.1624C16.9588 19.1624 16.1713 19.1624 15.3463 19.1624C13.2463 19.1624 11.1463 19.1624 9.0838 19.1624C8.5588 19.1624 8.0713 19.1624 7.5463 19.1624C6.2338 19.1624 5.1088 18.2249 4.9588 16.9124C4.8838 16.3499 5.0338 15.7874 5.1463 15.2624C5.2963 14.3249 5.4838 13.3874 5.6338 12.4499C5.8963 10.4624 6.3463 8.51244 6.6838 6.52495C6.9088 5.39995 7.7713 4.79995 8.8963 4.79995H11.2213H16.8838C17.9338 4.79995 18.8338 5.32495 19.0963 6.37495C19.2088 6.82495 19.2463 7.27495 19.3213 7.72495C19.6963 9.78744 20.0338 11.8124 20.4088 13.8749C20.6713 15.4874 21.3088 17.3999 19.8463 18.5999Z" fill="white"/>
+          <path d="M15.3086 6.59989V7.98739C15.2711 8.77489 14.8586 9.56239 14.1461 9.97489C12.6836 10.8749 10.6961 9.97489 10.4336 8.24989C10.3586 7.72489 10.3961 7.16239 10.3961 6.63739C10.3961 5.92489 9.27109 5.92489 9.27109 6.63739C9.27109 7.23739 9.23359 7.83739 9.30859 8.39989C9.45859 9.48739 10.1336 10.4624 11.0711 11.0249C13.0586 12.1499 15.6836 11.0624 16.2836 8.84989C16.4711 8.13739 16.3961 7.38739 16.3961 6.63739C16.4336 5.84989 15.3086 5.84989 15.3086 6.59989Z" fill="white"/>
+        </svg>
     </a>
   </div>
 </header>
 
-{% stylesheet %}
-  header {
-    height: 5rem;
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-  header a {
-    position: relative;
-    text-decoration: none;
-    color: var(--color-foreground);
-  }
-  header a sup {
-    position: absolute;
-    left: 100%;
-    overflow: hidden;
-    max-width: var(--page-margin);
-  }
-  header svg {
-    width: 2rem;
-  }
-  header .header__menu,
-  header .header__icons {
-    display: flex;
-    gap: 1rem;
-  }
-{% endstylesheet %}
+
 
 {% schema %}
 {
   "name": "t:general.header",
+  "class": "section-header",
   "settings": [
     {
       "type": "link_list",
