@@ -133,3 +133,79 @@ footer .footer__payment {
 .All-rights-reserved > div{
     margin-left: auto;
 }
+.footer__menus-wraper{
+    width: 100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+}
+.footer__menus{
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 2rem;
+    width: 100%;
+    padding-top: 32px;
+    padding-bottom: 32px;
+    border-top: solid 1px #ffffff33;
+}
+
+.footer__links > ul > li{
+    list-style: none;
+    margin-bottom: 16px;
+    color: #FFF;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}
+.footer__links > ul{
+    padding-left: 0px;
+}
+
+.footer__links > ul > li:first-child {
+    color: #ffffffB3;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+    text-transform: uppercase;
+}
+
+.footer__head{
+    padding-bottom: 32px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-between;
+    align-items: flex-end;
+    width: 100%;
+}
+.cta-footer{
+    color: #FFF;
+    font-family: "Instrument Serif";
+    font-size: 32px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 100%; /* 32px */
+    letter-spacing: -0.64px;
+    margin-bottom: 32px;
+}
+.logo-footer{
+    color: #ffffff;
+    font-family: "Instrument Serif";
+    font-size: 124px;
+    font-style: normal;
+    font-weight: 300;
+    line-height: 90%; /* 43.2px */
+    letter-spacing: -0.96px;
+}
+
+.footer-dsc{
+    color: #FFF;
+    font-family: "Helvetica Neue";
+    font-size: 16px;
+    font-style: normal;
+    font-weight: 400;
+    line-height: 140%; /* 22.4px */
+}

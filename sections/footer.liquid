@@ -1,41 +1,113 @@
 <footer>
-  
-  <div class="footer__links">
-    {% for link in section.settings.menu.links %}
-      {{ link.title | link_to: link.url }}
-    {% endfor %}
-    </div>
-    
-    <div class="footer__payment">
-      {% if section.settings.show_payment_icons %}
-        {% for type in shop.enabled_payment_types %}
-          {{ type | payment_type_svg_tag }}
-        {% endfor %}
-      {% endif %}
+  <div class="footer__menus-wraper">
+
+    <div class="footer__head">
+      <div>
+        {% comment %} <h2 class="logo-footer">PRESS ME ON</h2> {% endcomment %}
+        <a href="{{ routes.root_url }}" class="">
+          <img class="logo-brand" src="{{ 'footer_logo.png' | asset_url }}" alt="{{ shop.name }}" width="743" height="144">
+        </a>
+        <span class="footer-dsc">Because everyday glam should be effortless</span>
       </div>
-<div class="footer__copyright-wrapper">
-
-  <div class="footer__copyright">
-    <span>We believe in beauty that’s bold, effortless, and kind to your nails.</span>
-  </div>
-
-  <div class="footer__copyright">
-    <div class="menus-term">
-      <a href="">Privacy Policy</a>
-      <a href="">Terms of Use</a>
+      <div>
+        <h2 class="cta-footer">Need a quick glam fix?</h2>
+          <a href="http://" class="button button-footer-cta">
+            See collections
+            <svg xmlns="http://www.w3.org/2000/svg" width="12" height="13" viewBox="0 0 12 13" fill="none">
+              <g clip-path="url(#clip0_14967_1503)">
+                <path d="M11.226 0.5H2.15801C1.73145 0.5 1.38457 0.846875 1.38457 1.27344C1.38457 1.7 1.73145 2.04688 2.15801 2.04688H9.35566L0.226758 11.1781C-0.0755859 11.4805 -0.0755859 11.9703 0.226758 12.2727C0.529102 12.575 1.01895 12.575 1.32129 12.2727L10.4502 3.14141V10.3391C10.4502 10.7656 10.7971 11.1125 11.2236 11.1125C11.6502 11.1125 11.9971 10.7656 11.9971 10.3391V1.27344C11.9994 0.846875 11.6525 0.5 11.226 0.5Z" fill="white"/>
+              </g>
+              <defs>
+                <clipPath id="clip0_14967_1503">
+                  <rect width="12" height="12" fill="white" transform="translate(0 0.5)"/>
+                </clipPath>
+              </defs>
+            </svg>
+          </a>
+      </div>
     </div>
-  </div>
+    <div class="footer__menus">
 
-  <div class="footer__copyright All-rights-reserved ">
-    <div>
-      &copy;
-      {{ 'now' | date: '%Y' }}
-      {{ shop.name | link_to: routes.root_url }}<br>
-      All rights reserved
+      <div class="footer__links">
+        {% comment %} {% for link in section.settings.menu.links %}
+          {{ link.title | link_to: link.url }}
+        {% endfor %} {% endcomment %}
+        <ul>
+          <li>SHOP</li>
+          <li>Shop All</li>
+          <li>Best Sellers</li>
+          <li>New Arrivals</li>
+          <li>Limited Edition</li>
+          <li>Nail Prep Kits</li>
+        </ul>
+      </div>
+
+      <div class="footer__links">
+        {% comment %} {% for link in section.settings.menu.links %}
+          {{ link.title | link_to: link.url }}
+        {% endfor %} {% endcomment %}
+        <ul>
+          <li>ABOUT US</li>
+          <li>Shop All</li>
+          <li>Best Sellers</li>
+          <li>New Arrivals</li>
+          <li>Limited Edition</li>
+        </ul>
+      </div>
+
+      <div class="footer__links">
+        {% comment %} {% for link in section.settings.menu.links %}
+          {{ link.title | link_to: link.url }}
+        {% endfor %} {% endcomment %}
+        <ul>
+          <li>HELP</li>
+          <li>Shop All</li>
+          <li>Best Sellers</li>
+          <li>New Arrivals</li>
+          <li>Limited Edition</li>
+
+        </ul>
+      </div>
+
+      <div class="footer__links">
+        {% comment %} {% for link in section.settings.menu.links %}
+          {{ link.title | link_to: link.url }}
+        {% endfor %} {% endcomment %}
+        <ul>
+          <li>Contact Info</li>
+          <li>hello@PressMeOn.com<br>
+            123 Beauty Blvd, Los Angeles, CA<br>
+            (123) 456-7890
+          </li>
+        </ul>
+      </div>
+
     </div>
-  </div>
-</div>
 
+    <div class="footer__copyright-wrapper">
+
+      <div class="footer__copyright">
+        <span>We believe in beauty that’s bold, effortless, and kind to your nails.</span>
+      </div>
+
+      <div class="footer__copyright">
+        <div class="menus-term">
+          <a href="">Privacy Policy</a>
+          <a href="">Terms of Use</a>
+        </div>
+      </div>
+
+      <div class="footer__copyright All-rights-reserved ">
+        <div>
+          &copy;
+          {{ 'now' | date: '%Y' }}
+          {{ shop.name | link_to: routes.root_url }}<br>
+          All rights reserved
+        </div>
+      </div>
+    </div>
+
+    </div>
 </footer>
 
 

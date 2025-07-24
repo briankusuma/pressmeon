@@ -147,3 +147,7 @@ body {
   background-color: #E5D5FC;
   color: #FFFFFF;
 }
+.button-footer-cta{
+  border: 1px solid #FFFFFF33;
+  color: #FFFFFF;
+}
